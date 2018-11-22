@@ -3,6 +3,7 @@ const storage = require('botkit-storage-postgres')
 const debug = require('debug')
 
 const config = require('./lib/config')
+const converterMiddlerware = require('./middleware/converterMiddleware')
 const fx = require('./lib/fx')
 
 const controller = Botkit.slackbot({
@@ -28,14 +29,16 @@ controller.on('bot_channel_join', (bot, message) => {
   bot.reply(message, 'Hi, I am Tom, Capmotion\'s AI Director')
 })
 
-// USD Operations
-controller.hears('USD', 'direct_message', async (bot, message) => {
-  const response = await fx.getExchangeRate()
-  bot.reply(message, `Erm... In theory, 1 USD equals ${response.USD_COP.val} COP`)
+// FX Convertions
+controller.hears('convert', ['direct_message'], converterMiddlerware, fx.convertCurrency)
+
+// Uncaught Messages
+controller.hears('.*', ['direct_message'], (bot, message) => {
+  bot.reply(message, 'Sorry, I didn\'t understand your message, try `/dm @uncle_tom help`')
+  debug('Could not understand the message', JSON.stringify(message, null, 2))
 })
 
-// WorldRemit Operations
-controller.hears(['wr', 'worldremit'], 'direct_message', async (bot, message) => {
-  const response = await fx.getWRemitxchangeRate()
-  bot.reply(message, `Erm... According to WorldRemit, 1 USD equals ${response.ExchangeRate} COP`)
+controller.hears('.*', ['direct_mention'], (bot, message) => {
+  bot.reply(message, 'I don\'t want to bother the whole team, please send me a DM')
+  debug('Could not understand the message', JSON.stringify(message, null, 2))
 })
