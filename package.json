@@ -4,35 +4,25 @@
   "description": "Capmotion's AI Director",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "format": "find src -name '*.js' | xargs -I{} ./node_modules/.bin/prettier --write --single-quote {}",
-    "precommit": "lint-staged"
+    "start": "node index.js"
   },
   "author": "Jose Ospina <jose.ospina.hurtado@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "cz-conventional-changelog": "^2.1.0",
     "eslint": "^5.9.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-config-prettier": "^3.3.0",
+    "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-prettier": "^3.0.0",
-    "husky": "^1.2.0",
-    "lint-staged": "^8.1.0",
-    "prettier": "^1.15.2"
-  },
-  "lint-staged": {
-    "*.{js,json,css,md}": [
-      "prettier --write --single-quote {}",
-      "git add"
-    ]
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "debug": "^4.1.0"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "botkit": "^0.6.21",
-    "dotenv": "^6.1.0",
-    "eslint-plugin-jsx-a11y": "^6.1.2"
+    "botkit-storage-postgres": "^0.1.0",
+    "dotenv": "^6.1.0"
   },
   "config": {
     "commitizen": {
