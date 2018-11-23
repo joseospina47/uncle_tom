@@ -2,9 +2,9 @@
   "name": "uncle_tom",
   "version": "1.0.0",
   "description": "Capmotion's AI Director",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "nodemon server.js"
   },
   "author": "Jose Ospina <jose.ospina.hurtado@gmail.com>",
   "license": "MIT",
@@ -15,7 +15,8 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-node": "^8.0.0",
     "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-standard": "^4.0.0"
+    "eslint-plugin-standard": "^4.0.0",
+    "nodemon": "^1.18.6"
   },
   "dependencies": {
     "axios": "^0.18.0",
