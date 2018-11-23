@@ -27,7 +27,8 @@ controller.on('bot_channel_join', (bot, message) => {
 // FX Convertions
 controller.hears(['convert'], ['direct_message'], converterMiddlerware, fx.convertCurrency)
 
-controller.hears(['help'], ['direct_message'], (bot, message) => {
+// Help
+controller.hears(['help'], ['direct_message', 'direct_mention'], (bot, message) => {
   const text = [
     `I answer to:
     - \`/dm @uncle_tom convert <amount>\` to convert USD to COP.`
