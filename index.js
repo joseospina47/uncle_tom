@@ -25,13 +25,17 @@ controller.on('bot_channel_join', (bot, message) => {
 })
 
 // FX Convertions
-controller.hears('convert', ['direct_message'], converterMiddlerware, fx.convertCurrency)
+controller.hears(['convert'], ['direct_message'], converterMiddlerware, fx.convertCurrency)
+
+controller.hears(['help'], ['direct_message'], (bot, message) => {
+  const text = [
+    `I answer to:
+    - \`/dm @uncle_tom convert <amount>\` to convert USD to COP.`
+  ].join('\n')
+  bot.reply(message, text)
+})
 
 // Uncaught Messages
 controller.hears('.*', ['direct_message'], (bot, message) => {
   bot.reply(message, 'Sorry, I didn\'t understand your message, try `/dm @uncle_tom help`')
-})
-
-controller.hears('.*', ['direct_mention'], (bot, message) => {
-  bot.reply(message, 'I don\'t want to bother the whole team, please send me a DM')
 })
