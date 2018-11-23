@@ -1,5 +1,6 @@
 'use strict'
 
+const http = require('http')
 const Botkit = require('botkit')
 const storage = require('botkit-storage-mongo')
 
@@ -40,3 +41,9 @@ controller.hears(['help'], ['direct_message', 'direct_mention'], (bot, message) 
 controller.hears('.*', ['direct_message'], (bot, message) => {
   bot.reply(message, 'Sorry, I didn\'t understand your message, try `/dm @uncle_tom help`')
 })
+
+http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' })
+  res.write('Hi, I\'m Tom, Capmotion\'s AI Director')
+  res.end()
+}).listen(process.env.PORT || 3000)
